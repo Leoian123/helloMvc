@@ -1,0 +1,13 @@
+﻿@model IEnumerable<SchoolModel.Entities.Student>
+@{
+    ViewData["Title"] = "lista studenti";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @foreach (var s in Model)
+    {
+        <label>nome: </label> @s.Firstname
+        <label>cognome: </label> @s.Lastname
+    }
+</div>
