@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EFSchoolPersistence\EFSchoolPersistence.csproj" />
     <ProjectReference Include="..\InMemorySchoolPersistance\InMemorySchoolPersistance.csproj" />
     <ProjectReference Include="..\SchoolModel\SchoolModel.csproj" />
   </ItemGroup>

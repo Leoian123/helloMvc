@@ -1,4 +1,5 @@
-﻿using SchoolModel.Entities;
+﻿using EFSchoolPersistence.EF;
+using SchoolModel.Entities;
 using SchoolModel.Repositories;
 using System;
 using System.Collections.Generic;
@@ -6,23 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EFSchoolPersistence.Repository
-{
-    public class EFStudentRepository : IStudentRepository
+namespace EFSchoolPersistence.Repository {
+    public class EFStudentRepository : EFCrudRepository<Student,long> , IStudentRepository
     {
-        public Student Add(Student s)
+        public EFStudentRepository(SchoolContext ctx) : base(ctx)
         {
-            throw new NotImplementedException();
+
         }
 
-        public Student FindbyId(long id)
-        {
-            throw new NotImplementedException();
-        }
 
-        public IEnumerable<Student> GetAll()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

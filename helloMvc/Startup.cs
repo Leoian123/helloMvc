@@ -1,10 +1,14 @@
+using EFSchoolPersistence.EF;
+using EFSchoolPersistence.Repository;
 using InMemorySchoolPersistance.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using SchoolModel.Repositories;
 using System;
 using System.Collections.Generic;
@@ -25,8 +29,16 @@ namespace helloMvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<SchoolContext>(opt => opt.UseSqlServer("Server = localhost; User Id=sa; Password=1Secure*Password; Database = School")
+                .LogTo(Console.WriteLine,
+                new[] {
+                         DbLoggerCategory.Database.Command.Name
+                      },
+                       LogLevel.Information)
+                       .EnableSensitiveDataLogging());
             services.AddControllersWithViews();
-            services.AddScoped<IStudentRepository, InMemoryStudentRepository>();
+            //services.AddSingleton<IStudentRepository, InMemoryStudentRepository>();
+            services.AddScoped<IStudentRepository, EFStudentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

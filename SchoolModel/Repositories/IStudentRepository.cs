@@ -7,10 +7,7 @@ using System.Threading.Tasks;
 
 namespace SchoolModel.Repositories
 {
-    public interface IStudentRepository
+    public interface IStudentRepository : ICrudRepository<Student,long>
     {
-        Student FindbyId(long id);
-        IEnumerable<Student> GetAll();
-        Student Add(Student s);
     }
 }

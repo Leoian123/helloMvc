@@ -46,13 +46,23 @@ namespace InMemorySchoolPersistance.Repositories
             studentData[b.Id] = b;
 
         }
-        public Student Add(Student s)
+        public Student Create(Student s)
         {
             studentData[s.Id]=s;
             return s;
         }
 
-        public Student FindbyId(long id)
+        public bool Delete(long key)
+        {
+            return studentData.Remove(key);
+        }
+
+        public bool Delete(Student element)
+        {
+            return studentData.Remove(element.Id);
+        }
+
+        public Student FindById(long id)
         {
             return studentData[id];   
         }
@@ -60,6 +70,16 @@ namespace InMemorySchoolPersistance.Repositories
         public IEnumerable<Student> GetAll()
         {
             return studentData.Values;
+        }
+
+        public bool Update(Student newElement)
+        {
+            if (studentData.ContainsKey(newElement.Id))
+            {
+                studentData[newElement.Id] = newElement;
+                return true;
+            }
+            return false;
         }
     }
 }
