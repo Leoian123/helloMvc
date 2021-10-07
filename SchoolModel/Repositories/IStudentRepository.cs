@@ -9,5 +9,7 @@ namespace SchoolModel.Repositories
 {
     public interface IStudentRepository : ICrudRepository<Student,long>
     {
+        IEnumerable<Student> FindByLastnameLike(string lastnameLike);
     }
+    
 }

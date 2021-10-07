@@ -30,12 +30,10 @@ namespace helloMvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SchoolContext>(opt => opt.UseSqlServer("Server = localhost; User Id=sa; Password=1Secure*Password; Database = School")
-                .LogTo(Console.WriteLine,
-                new[] {
-                         DbLoggerCategory.Database.Command.Name
-                      },
-                       LogLevel.Information)
-                       .EnableSensitiveDataLogging());
+                .LogTo(Console.WriteLine, new[]
+                {
+                    DbLoggerCategory.Database.Command.Name
+                }, LogLevel.Information).EnableSensitiveDataLogging());
             services.AddControllersWithViews();
             //services.AddSingleton<IStudentRepository, InMemoryStudentRepository>();
             services.AddScoped<IStudentRepository, EFStudentRepository>();

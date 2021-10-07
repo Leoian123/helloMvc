@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EFSchoolPersistence.Repository {
-    public class EFCrudRepository<T, K> : ICrudRepository<T, K> where T : class {
-        private readonly SchoolContext ctx;
+namespace EFSchoolPersistence.Repository
+{
+    public class EFCrudRepository<T, K> : ICrudRepository<T, K> where T : class
+    {
+        protected readonly SchoolContext ctx;
         private DbSet<T> entities;
         public EFCrudRepository(SchoolContext ctx)
         {
@@ -19,31 +21,31 @@ namespace EFSchoolPersistence.Repository {
         public T Create(T newElement)
         {
             entities.Add(newElement);
-            ctx.SaveChanges();
+            //ctx.SaveChanges();  Non salviamo qui, ma in DidacticsService
             return newElement;
         }
 
-        public bool Delete(K id)
+        public void Delete(K id)
         {
             T found = entities.Find(id);
-            if (found == null)
-            {
-                return false;
-            }
+            //if (found == null)
+            //{
+            //    return false;
+            //}
             entities.Remove(found);
-            ctx.SaveChanges();
-            return true;
+            //ctx.SaveChanges();
+            //return true;
         }
-        public bool Delete(T element)
+        public void Delete(T element)
         {
             entities.Remove(element);
 
-            int changes = ctx.SaveChanges();
-            if (changes == 0)
-            {
-                return false;
-            }
-            return true;
+            //int changes = ctx.SaveChanges();
+            //if (changes == 0)
+            //{
+            //    return false;
+            //}
+            //return true;
 
         }
 
@@ -57,12 +59,11 @@ namespace EFSchoolPersistence.Repository {
             return entities.AsEnumerable();
         }
 
-        public bool Update(T newElement)
+        public void Update(T newElement)
         {
-
             entities.Update(newElement);
-            int numChanges = ctx.SaveChanges();
-            return numChanges > 0;
+            //int numChanges = ctx.SaveChanges();
+            //return numChanges > 0;
         }
     }
 }

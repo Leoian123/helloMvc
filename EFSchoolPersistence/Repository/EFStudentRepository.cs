@@ -14,7 +14,9 @@ namespace EFSchoolPersistence.Repository {
         {
 
         }
-
-
+        public IEnumerable<Student> FindByLastnameLike(string lastnameLike)
+        {
+            return ctx.Students.Where(a => a.Lastname.Contains(lastnameLike));
+        }
     }
 }

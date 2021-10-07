@@ -24,7 +24,7 @@ namespace helloMvc.Controllers
 
         public IActionResult Index()
         {
-            var students = studentRepo.GetAll(); 
+            var students = studentRepo.FindByLastnameLike("re"); 
             return View(students);
         }
 

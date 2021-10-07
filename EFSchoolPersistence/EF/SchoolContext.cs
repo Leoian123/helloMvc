@@ -30,14 +30,13 @@ namespace EFSchoolPersistence.EF
                       },
                        LogLevel.Information)
                        .EnableSensitiveDataLogging();
-
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Student>().HasData(new Student()
             {
-                Id = 1,
+                Id = -1,
                 Firstname = "Gianni",
                 Lastname = "Ciccio",
                 Address = "Via bella",
@@ -49,7 +48,7 @@ namespace EFSchoolPersistence.EF
             },
             new Student()
             {
-                Id = 2,
+                Id = -2,
                 Firstname = "Riccardo",
                 Lastname = "Bellardelli",
                 Address = "Via brutta",
@@ -58,7 +57,8 @@ namespace EFSchoolPersistence.EF
                 Email = "riccardo@email.com",
                 PhoneNumber = "5678213231",
                 SSN = "SCVDBSIV2782dds"
-            }) ;
+            });
         }
     }
 }
+

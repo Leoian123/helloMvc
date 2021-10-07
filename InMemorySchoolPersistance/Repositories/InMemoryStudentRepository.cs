@@ -52,14 +52,14 @@ namespace InMemorySchoolPersistance.Repositories
             return s;
         }
 
-        public bool Delete(long key)
+        public void Delete(long key)
         {
-            return studentData.Remove(key);
+             studentData.Remove(key);
         }
 
-        public bool Delete(Student element)
+        public void Delete(Student element)
         {
-            return studentData.Remove(element.Id);
+            studentData.Remove(element.Id);
         }
 
         public Student FindById(long id)
@@ -67,19 +67,24 @@ namespace InMemorySchoolPersistance.Repositories
             return studentData[id];   
         }
 
+        public IEnumerable<Student> FindByLastnameLike(string lastnameLike)
+        {
+            return studentData.Values.Where(a => a.Lastname.Contains(lastnameLike));
+        }
+
         public IEnumerable<Student> GetAll()
         {
             return studentData.Values;
         }
 
-        public bool Update(Student newElement)
+        public void Update(Student newElement)
         {
             if (studentData.ContainsKey(newElement.Id))
             {
                 studentData[newElement.Id] = newElement;
-                return true;
+                //return true;
             }
-            return false;
+            //return false;
         }
     }
 }
