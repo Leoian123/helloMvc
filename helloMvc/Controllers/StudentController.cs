@@ -42,6 +42,16 @@ namespace helloMvc.Controllers
         {
             return View();
         }
+        public IActionResult Edit(long id) 
+        {
+            var s = didacticsService.GetStudentById(id);
+            return View(s);
+        }
+        public IActionResult Delete(long id) 
+        {
+            var s = didacticsService.GetStudentById(id);
+            return View(s);
+        }
 
         [HttpPost]
         public IActionResult Create(Student s) 
@@ -52,6 +62,22 @@ namespace helloMvc.Controllers
                 return RedirectToAction("Index");
             }
             return View(s);
+        }
+        [HttpPost]
+        public IActionResult Edit(Student s)
+        {
+            if (ModelState.IsValid)
+            {
+                didacticsService.UpdateStudent(s);
+                return RedirectToAction("Index");
+            }
+            return View(s);
+        }
+        [HttpPost]
+        public IActionResult Delete(Student s)
+        {
+            didacticsService.Delete(s);
+            return RedirectToAction("Index");
         }
 
     }

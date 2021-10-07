@@ -13,6 +13,8 @@ namespace SchoolModel.Services
         IEnumerable<Student> GetStudentsByLastnameLike(string lastnameLike);
         Student CreateStudent(Student s);
         Student GetStudentById(long id);
+        void UpdateStudent(Student s);
+        void Delete(Student s);
     }
 
 }
