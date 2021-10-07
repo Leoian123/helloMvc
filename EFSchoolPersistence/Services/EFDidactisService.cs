@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace EFSchoolPersistence.Services
 {
-    public class EFDidatticService : IDidacticsService
+    public class EFDidactisService : IDidactisService
     {
         private IStudentRepository studentRepo;
         private SchoolContext ctx;
-        public EFDidatticService(IStudentRepository studentRepo, SchoolContext ctx) 
+        public EFDidactisService(IStudentRepository studentRepo, SchoolContext ctx) 
         {
             this.studentRepo = studentRepo;
             this.ctx = ctx;
@@ -26,9 +26,19 @@ namespace EFSchoolPersistence.Services
             ctx.SaveChanges(); //Salviamo qui invece che nella repository
             return s;
         }
+
+        public IEnumerable<Student> GetAllStudents()
+        {
+            return studentRepo.GetAll();
+        }
+
         public IEnumerable<Student> GetStudentsByLastnameLike(string lastnameLike)
         {
             return studentRepo.FindByLastnameLike(lastnameLike).ToList(); //Non più una query, ma una lista vera e propria grazie a .ToList
+        }
+        public Student GetStudentById(long id) 
+        {
+            return studentRepo.FindById(id);
         }
     }
 }

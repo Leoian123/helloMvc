@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace SchoolModel.Services
 {
-    public interface IDidacticsService
+    public interface IDidactisService
     {
+        IEnumerable<Student> GetAllStudents();
         IEnumerable<Student> GetStudentsByLastnameLike(string lastnameLike);
         Student CreateStudent(Student s);
+        Student GetStudentById(long id);
     }
 
 }

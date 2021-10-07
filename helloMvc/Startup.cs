@@ -1,5 +1,6 @@
 using EFSchoolPersistence.EF;
 using EFSchoolPersistence.Repository;
+using EFSchoolPersistence.Services;
 using InMemorySchoolPersistance.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SchoolModel.Repositories;
+using SchoolModel.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +39,7 @@ namespace helloMvc
             services.AddControllersWithViews();
             //services.AddSingleton<IStudentRepository, InMemoryStudentRepository>();
             services.AddScoped<IStudentRepository, EFStudentRepository>();
+            services.AddScoped<IDidactisService, EFDidactisService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
